@@ -6,7 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Resources\\UserResource' => $baseDir . '/app/Http/Resources/UserResource.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -3479,6 +3481,7 @@ return array(
     'PHPUnit\\Framework\\Attributes\\UsesMethod' => $vendorDir . '/phpunit/phpunit/src/Framework/Attributes/UsesMethod.php',
     'PHPUnit\\Framework\\Attributes\\UsesTrait' => $vendorDir . '/phpunit/phpunit/src/Framework/Attributes/UsesTrait.php',
     'PHPUnit\\Framework\\Attributes\\WithoutErrorHandler' => $vendorDir . '/phpunit/phpunit/src/Framework/Attributes/WithoutErrorHandler.php',
+    'PHPUnit\\Framework\\ChildProcessResultProcessor' => $vendorDir . '/phpunit/phpunit/src/Framework/TestRunner/ChildProcessResultProcessor.php',
     'PHPUnit\\Framework\\CodeCoverageException' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/CodeCoverageException.php',
     'PHPUnit\\Framework\\ComparisonMethodDoesNotAcceptParameterTypeException' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/ObjectEquals/ComparisonMethodDoesNotAcceptParameterTypeException.php',
     'PHPUnit\\Framework\\ComparisonMethodDoesNotDeclareBoolReturnTypeException' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/ObjectEquals/ComparisonMethodDoesNotDeclareBoolReturnTypeException.php',

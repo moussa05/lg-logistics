@@ -14,7 +14,7 @@
             height: 100vh;
         }
         form#multiStepForm {
-            padding: 0vh 3vw 7vh;
+            padding: 7vh 3vw;
         }
         .form-step {
             position: relative;
@@ -26,15 +26,11 @@
             width: 100%;
         }
 
-        .form-group input {
-            padding: 8px 0 !important;!i;!;
-        } 
         form {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
             max-width: 100%;
         }
 
@@ -124,117 +120,130 @@
         }
         img.logo {
             height: auto;
-            width: 200px;
+            width: 150px;
             margin: 0 auto;
             position: relative;
             left: 50%;
             transform: translate(-50%);
+            margin-bottom: 2em;
         }
 
         h2 {
             margin-top: 0;
+            margin-bottom: 2em;
+            /* color: #013e98; */
+            text-transform: uppercase;
+        }
+        p.sub {
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: none;
         }
 
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
 <body>
     <form id="multiStepForm">
-        <img class="logo" src="https://lg-logistics.net/wp-content/uploads/2025/01/LGL-2025-01-16T144836.038-1-1024x1024.png" alt="" srcset="">
-        <h2>Enregistrement Chauffeur</h2>
+        <img class="logo" src="{{ asset('storage/images/lglogo.png') }}" alt="" srcset="">
+        <h2>
+            Enregistrement Chauffeur
+            <p class="sub">Veuillez remplir ce formulaire ci-dessous</p>
+        </h2>
 
         <!-- Étape 1 : Informations personnelles -->
         <div class="form-step form-step-active">
             <div class="form-group">
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" required>
+                <label class="form-label" for="prenom">Prénom :</label>
+                <input class="form-control" type="text" id="prenom" name="prenom" required>
             </div>
 
             <div class="form-group">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom" required>
+                <label class="form-label" for="nom">Nom :</label>
+                <input class="form-control" type="text" id="nom" name="nom" required>
             </div>
 
             <div class="form-group">
-                <label for="date_naissance">Date de naissance :</label>
-                <input type="date" id="date_naissance" name="date_naissance" required>
+                <label class="form-label" for="date_naissance">Date de naissance :</label>
+                <input class="form-control" type="date" id="date_naissance" name="date_naissance" required>
             </div>
 
             <div class="form-group">
-                <label for="telephone">Numéro de téléphone :</label>
-                <input type="tel" id="telephone" name="telephone" required>
+                <label class="form-label" for="telephone">Numéro de téléphone :</label>
+                <input class="form-control" type="tel" id="telephone" name="telephone" required>
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn" id="next1">Suivant</button>
+                <button type="button" class="btn btn-primary" id="next1">Suivant</button>
             </div>
         </div>
 
         <!-- Étape 2 : Informations véhicule -->
         <div class="form-step">
             <div class="form-group">
-                <label for="marque">Marque du véhicule :</label>
-                <input type="text" id="marque" name="marque" required>
+                <label class="form-label" for="marque">Marque du véhicule :</label>
+                <input class="form-control" type="text" id="marque" name="marque" required>
             </div>
 
             <div class="form-group">
-                <label for="modele">Modèle du véhicule :</label>
-                <input type="text" id="modele" name="modele" required>
+                <label class="form-label" for="modele">Modèle du véhicule :</label>
+                <input class="form-control" type="text" id="modele" name="modele" required>
             </div>
 
             <div class="form-group">
-                <label for="photo_vehicule">Image(s) descriptive(s) du véhicule :</label>
-                <input type="file" id="photo_vehicule" name="photo_vehicule[]" accept="image/*" multiple onchange="previewImages('photo_vehicule', 'vehicule-previews')">
+                <label class="form-label" for="photo_vehicule">Image(s) descriptive(s) du véhicule :</label>
+                <input class="form-control" type="file" id="photo_vehicule" name="photo_vehicule[]" accept="image/*" multiple onchange="previewImages('photo_vehicule', 'vehicule-previews')">
                 <div class="image-previews" id="vehicule-previews"></div>
             </div>
 
             <div class="form-group">
-                <label for="carte_grise">Photo(s) de la carte grise :</label>
-                <input type="file" id="carte_grise" name="carte_grise[]" accept="image/*" multiple onchange="previewImages('carte_grise', 'carte-grise-previews')">
+                <label class="form-label" for="carte_grise">Photo(s) de la carte grise :</label>
+                <input class="form-control" type="file" id="carte_grise" name="carte_grise[]" accept="image/*" multiple onchange="previewImages('carte_grise', 'carte-grise-previews')">
                 <div class="image-previews" id="carte-grise-previews"></div>
             </div>
 
             <div class="form-group">
-                <label for="assurance">Photo(s) de l'assurance :</label>
-                <input type="file" id="assurance" name="assurance[]" accept="image/*" multiple onchange="previewImages('assurance', 'assurance-previews')">
+                <label class="form-label" for="assurance">Photo(s) de l'assurance :</label>
+                <input class="form-control" type="file" id="assurance" name="assurance[]" accept="image/*" multiple onchange="previewImages('assurance', 'assurance-previews')">
                 <div class="image-previews" id="assurance-previews"></div>
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn" id="prev2">Précédent</button>
-                <button type="button" class="btn" id="next2">Suivant</button>
+                <button type="button" class="btn btn-primary" id="prev2">Précédent</button>
+                <button type="button" class="btn btn-primary" id="next2">Suivant</button>
             </div>
         </div>
 
         <!-- Étape 3 : Informations chauffeur -->
         <div class="form-step">
             <div class="form-group">
-                <label for="permis_conduire">Photo(s) du permis de conduire :</label>
-                <input type="file" id="permis_conduire" name="permis_conduire[]" accept="image/*" multiple onchange="previewImages('permis_conduire', 'permis-previews')">
+                <label class="form-label" for="permis_conduire">Photo(s) du permis de conduire :</label>
+                <input class="form-control" type="file" id="permis_conduire" name="permis_conduire[]" accept="image/*" multiple onchange="previewImages('permis_conduire', 'permis-previews')">
                 <div class="image-previews" id="permis-previews"></div>
             </div>
 
             <div class="form-group">
-                <label for="experience_vtc">Avez-vous déjà fait du VTC ?</label>
-                <input type="checkbox" id="experience_vtc" name="experience_vtc">
+                <label class="form-label" for="experience_vtc">Avez-vous déjà fait du VTC ?</label>
+                <input class="form-control" type="checkbox" id="experience_vtc" name="experience_vtc">
             </div>
 
             <div class="form-group">
-                <label for="disponibilite">Horaires de disponibilité :</label>
-                <input type="text" id="disponibilite" name="disponibilite" placeholder="Ex : 9h-18h" required>
+                <label class="form-label" for="disponibilite">Horaires de disponibilité :</label>
+                <input class="form-control" type="text" id="disponibilite" name="disponibilite" placeholder="Ex : 9h-18h" required>
             </div>
 
             <div class="form-group">
-                <label for="message_motivation">Message de motivation (optionnel) :</label>
+                <label class="form-label" for="message_motivation">Message de motivation (optionnel) :</label>
                 <textarea id="message_motivation" name="message_motivation" rows="4"></textarea>
             </div>
 
             <div class="btn-group">
-                <button type="button" class="btn" id="prev3">Précédent</button>
-                <button type="submit" class="btn">Envoyer</button>
+                <button type="button" class="btn btn-primary" id="prev3">Précédent</button>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>
         </div>
     </form>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script>
         const next1 = document.getElementById('next1');
         const next2 = document.getElementById('next2');

@@ -43,6 +43,7 @@ a.buttonstarter {
     text-decoration: none;
     color: white;
     font-weight: 600;
+    border-radius: 5px;
 }
 span.text-btn {
     padding: 13px 20px;
@@ -51,6 +52,7 @@ span.text-btn {
 span.icon-btn {
     padding: 13px 20px;
     background: #c55a08;
+    border-radius: 5px;
 }
 hr.before {
     display: block;

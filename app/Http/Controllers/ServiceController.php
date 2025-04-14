@@ -12,8 +12,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::where('actif', 'oui')->get();
+        return response()->json([
+            'success' => true,
+            'data' => $services,
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

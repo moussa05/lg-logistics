@@ -17,7 +17,7 @@
                 <p>
                     Rejoignez dès aujourd'hui LG LOGISTICS, la nouvelle application VTC qui valorise votre profession ! Inscrivez-vous rapidement et commencez à recevoir des courses en toute simplicité. Profitez d’une plateforme innovante qui vous garantit flexibilité, sécurité et de nombreux clients à portée de main. Faites le bon choix pour booster votre activité. Let's Go !
                 </p>
-                <a href="{{ route('chauffeurs.create') }}" class="buttonstarter"><span class="text-btn">S'inscrire </span><span class="icon-btn"><i class="fa-solid fa-chevron-right"></i></span></a>
+                <a href="" class="buttonstarter"><span class="text-btn">S'inscrire </span><span class="icon-btn"><i class="fa-solid fa-chevron-right"></i></span></a>
             </div>
         </div>
     </main>

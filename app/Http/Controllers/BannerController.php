@@ -10,10 +10,16 @@ class BannerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+   public function index()
     {
-        //
+        $banners = Banner::where('actif', 'oui')->get();
+        return response()->json([
+            'success' => true,
+            'data' => $banners,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

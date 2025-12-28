@@ -10,9 +10,48 @@ use Illuminate\Support\Str;
 use App\Http\Resources\UserResource;
 use Laravel\Pail\ValueObjects\Origin\Console;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
+use App\Models\Otp;
+use App\Services\TwilioService;
 
 class AuthController extends Controller
 {
+
+    public function generateOtp($userId)
+    {
+        // invalider les anciens OTP
+        Otp::where('user_id', $userId)
+            ->where('is_used', false)
+            ->update(['is_used' => true]);
+
+        $otp = rand(100000, 999999);
+
+        return Otp::create([
+            'user_id' => $userId,
+            'code' => $otp,
+            'expires_at' => Carbon::now()->addMinutes(5), // valable 5 min
+        ]);
+    }
+    function verifOtp($userId, $code)
+    {
+        $otp = Otp::where('user_id', $userId)
+            ->where('code', $code)
+            ->where('is_used', false)
+            ->first();
+
+        if (!$otp) {
+            return false;
+        }
+
+        if (Carbon::now()->greaterThan($otp->expires_at)) {
+            return false;
+        }
+
+        // Marquer comme utilisé
+        $otp->update(['is_used' => true]);
+
+        return true;
+    }
 
     public function getUser(Request $request)
     {
@@ -30,21 +69,23 @@ class AuthController extends Controller
             ], 404);
         }
 
-        // Retourner les informations de l'utilisateur
+        // ✅ Générer un token Sanctum
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        // Retourner l'utilisateur + le token
         return response()->json([
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
-            'phone_number' => $user->phone_number,
-            'email' => $user->email,
-            'status' => $user->status,
+            'message' => 'Utilisateur trouvé',
+            'user' => new UserResource($user),
+            'token' => $token,
         ], 200);
     }
+
     // ✅ Étape 1 : Enregistrer le numéro et envoyer OTP
     public function sendOtp(Request $request)
     {
-    
+
         $validated = Validator::make($request->all(), [
-            'phone_number' => 'required|unique:users,phone_number',
+            'phone_number' => 'required',
         ]);
 
         if ($validated->fails()) {
@@ -57,6 +98,9 @@ class AuthController extends Controller
             ['status' => 'pending']
         );
 
+        $otp = $this->generateOtp($user->id);
+        TwilioService::sendOtp($user->phone_number, $otp->code);
+
         return response()->json([
             'message' => 'Numéro enregistré. Attente vérification OTP.',
             'user' => new UserResource($user),
@@ -67,9 +111,8 @@ class AuthController extends Controller
     public function verifyOtp(Request $request)
     {
         $validated = Validator::make($request->all(), [
-            'phone_number' => 'required|exists:users,phone_number',
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
+            'phone_number' => 'required',
+            'code' => 'required'
         ]);
 
         if ($validated->fails()) {
@@ -77,11 +120,14 @@ class AuthController extends Controller
         }
 
         $user = User::where('phone_number', $request->phone_number)->first();
-        
+
         if (!$user) {
             return response()->json(['error' => 'Utilisateur non trouvé'], 404);
         }
 
+        if (!$this->verifOtp($user->id, $request->code)) {
+            return response()->json(['error' => 'Code OTP invalide'], 401);
+        }
         // 📝 Mettre à jour le profil après validation OTP
         $user->update([
             'first_name' => $request->first_name,

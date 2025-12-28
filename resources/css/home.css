@@ -1,0 +1,62 @@
+body {
+    min-height: 100vh;
+    background: url(../../public/storage/banners/demenagement_promo.jpg) !important;
+    background-repeat: repeat !important;
+    background-size: cover !important;
+}
+main.home-screen {
+    position: relative;
+    margin: auto;
+    padding: 0 10em;
+}
+
+.starter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.starter-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 50px;
+    /* flex: 1; */
+    height: 88vh;
+    background: white;
+    width: 33%;
+    border-radius: 0% 0% 5% 5%;
+    padding: 7vh;
+}
+.starter-left {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+
+a.buttonstarter {
+    display: flex;
+    justify-content: space-between;
+    background: #F16800;
+    width: 55%;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+}
+span.text-btn {
+    padding: 13px 20px;
+}
+
+span.icon-btn {
+    padding: 13px 20px;
+    background: #c55a08;
+    border-radius: 5px;
+}
+hr.before {
+    display: block;
+    width: 30%;
+    border-top: 5px solid #F16800;
+    opacity: 1;
+}

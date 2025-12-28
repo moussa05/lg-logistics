@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CommandeController;
 
 Route::post('/send-otp', [AuthController::class, 'sendOtp']);
 Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
@@ -15,3 +18,9 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::apiResource('banners', BannerController::class);
+Route::apiResource('services', ServiceController::class);
+Route::apiResource('commandes', CommandeController::class);
+Route::middleware('auth:sanctum')->get('/my-commandes', [CommandeController::class, 'myCommandes']);
+

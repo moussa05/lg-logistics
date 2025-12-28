@@ -1,8 +1,8 @@
 body {
     min-height: 100vh;
-    background: url(../../public/storage/images/bg.jpg) !important;
+    background: url(../../public/storage/banners/demenagement_promo.jpg) !important;
     background-repeat: repeat !important;
-    background-size: cover;
+    background-size: cover !important;
 }
 main.home-screen {
     position: relative;

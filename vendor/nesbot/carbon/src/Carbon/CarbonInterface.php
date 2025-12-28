@@ -1080,9 +1080,9 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * @example $date->add(15, 'days')
      * @example $date->add(CarbonInterval::days(4))
      *
-     * @param Unit|string|DateInterval|Closure|CarbonConverterInterface $unit
-     * @param int|float                                                 $value
-     * @param bool|null                                                 $overflow
+     * @param Unit|int|string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param Unit|int|float|string                                         $value
+     * @param bool|null                                                     $overflow
      *
      * @return static
      */
@@ -3375,6 +3375,8 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * });
      * echo Carbon::yesterday()->hours(11)->userFormat();
      * ```
+     *
+     * @param-closure-this  static  $macro
      */
     public static function macro(string $name, ?callable $macro): void;
 
@@ -4230,9 +4232,9 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * @example $date->sub(15, 'days')
      * @example $date->sub(CarbonInterval::days(4))
      *
-     * @param Unit|string|DateInterval|Closure|CarbonConverterInterface $unit
-     * @param int|float                                                 $value
-     * @param bool|null                                                 $overflow
+     * @param Unit|int|string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param Unit|int|float|string                                         $value
+     * @param bool|null                                                     $overflow
      *
      * @return static
      */
@@ -4282,9 +4284,9 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      *
      * @see sub()
      *
-     * @param string|DateInterval $unit
-     * @param int|float           $value
-     * @param bool|null           $overflow
+     * @param Unit|int|string|DateInterval $unit
+     * @param Unit|int|float|string        $value
+     * @param bool|null                    $overflow
      *
      * @return static
      */

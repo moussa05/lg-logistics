@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commande;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommandeController extends Controller
 {
@@ -13,6 +14,21 @@ class CommandeController extends Controller
         return response()->json($commandes);
     }
 
+    public function myCommandes()
+{
+    $user = Auth::user();
+
+    if (!$user) {
+        return response()->json(['message' => 'Non authentifié'], 401);
+    }
+
+    $commandes = Commande::with(['user', 'service'])
+        ->where('id_user', $user->id)
+        ->orderByDesc('created_at')
+        ->get();
+
+    return response()->json($commandes);
+}
     public function store(Request $request)
     {
         $request->validate([

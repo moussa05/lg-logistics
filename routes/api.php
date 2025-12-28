@@ -22,3 +22,5 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('banners', BannerController::class);
 Route::apiResource('services', ServiceController::class);
 Route::apiResource('commandes', CommandeController::class);
+Route::middleware('auth:sanctum')->get('/my-commandes', [CommandeController::class, 'myCommandes']);
+
